@@ -1,7 +1,8 @@
-import exampleVideoData from 'compiled/src/data/exampleVideoData.js';
+//import exampleVideoData from './compiled/src/data/exampleVideoData.js';
+//import VideoListEntry from '/VideoListEntry.js';
 var VideoList = (exampleVideoData) => (
   <div className="video-list">
-    {exampleVideoData.map((video) => (
+    {exampleVideoData.videos.map((video) => (
       <div><h5><em><VideoListEntry video={video}/></em> view goes here</h5></div>
     ))}
 
