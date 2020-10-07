@@ -1,15 +1,17 @@
 var VideoListEntry = (video) => {
-  console.log(video);
+  console.log(video.video);
   return (
-    <div className="video-list-entry media">
-      <div className="media-left media-middle">
-        <img className="media-object" src={video.snippets.thumbnails.default.url} alt="" />
+    <div><h5><em>
+      <div className="video-list-entry media">
+        <div className="media-left media-middle">
+          <img className="media-object" src={video.video.snippet.thumbnails.default.url} alt="" />
+        </div>
+        <div className="media-body">
+          <div className="video-list-entry-title">{video.video.snippet.title}</div>
+          <div className="video-list-entry-detail">{video.video.snippet.description}</div>
+        </div>
       </div>
-      <div className="media-body">
-        <div className="video-list-entry-title"></div>
-        <div className="video-list-entry-detail"></div>
-      </div>
-    </div>
+    </em>view goes here</h5></div>
   );
 };
 
