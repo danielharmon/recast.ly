@@ -2,19 +2,40 @@ import Search from './Search.js';
 import VideoPlayer from './VideoPlayer.js';
 import VideoList from './VideoList.js';
 import exampleVideoData from '../data/exampleVideoData.js';
+import searchYouTube from '../lib/searchYouTube.js';
 
 class App extends React.Component {
-  constructor(props) {
+  constructor(props = {searchYouTube: searchYouTube}) {
     super(props);
     this.state = {
-      videos: exampleVideoData,
+      videos: [{
+        etag: '',
+        id: {
+          videoId: ''
+        },
+        snippet: {
+          title: '',
+          description: '',
+          thumbnails: {
+            default: {
+              url: ''
+            }
+          }
+        }
+      }],
       currentVideoIndex: 0
     };
     this.onTitleClick = this.onTitleClick.bind(this);
+    this.searchYouTube = searchYouTube;
+
   }
 
   onTitleClick(video) {
     this.setState({currentVideoIndex: this.state.videos.indexOf(video)});
+  }
+
+  componentDidMount() {
+    this.setState({videos: this.searchYouTube()});
   }
 
   render() {
