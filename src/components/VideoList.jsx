@@ -1,7 +1,6 @@
 //import exampleVideoData from './compiled/src/data/exampleVideoData.js';
 import VideoListEntry from './VideoListEntry.js';
 var VideoList = (videos) => {
-  //console.log('from videolist :');
   return (
     <div className="video-list">
       {videos.videos.map((video) => (
