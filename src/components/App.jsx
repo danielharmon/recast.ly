@@ -1,19 +1,19 @@
 import Search from './Search.js';
 import VideoPlayer from './VideoPlayer.js';
 import VideoList from './VideoList.js';
-
+import exampleVideoData from '../data/exampleVideoData.js';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      props: props,
+      videos: exampleVideoData,
       currentVideoIndex: 0
     };
     this.onTitleClick = this.onTitleClick.bind(this);
   }
 
-  onTitleClick() {
+  onTitleClick(index) {
     this.setState({currentVideoIndex: index});
   }
 
@@ -28,10 +28,10 @@ class App extends React.Component {
         </nav>
         <div className="row">
           <div className="col-md-7">
-            <VideoPlayer video={this.state.props[0]}/>
+            <VideoPlayer video={this.state.videos[this.state.currentVideoIndex]}/>
           </div>
           <div className="col-md-5">
-            <VideoList video={this.state} onClick={this.onTitleClick}/>
+            <VideoList videos={this.state.videos} onClick={this.onTitleClick}/>
           </div>
         </div>
       </div>
