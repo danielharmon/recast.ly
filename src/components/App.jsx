@@ -13,12 +13,12 @@ class App extends React.Component {
     this.onTitleClick = this.onTitleClick.bind(this);
   }
 
-  onTitleClick(index) {
-    this.setState({currentVideoIndex: index});
+  onTitleClick(video) {
+    this.setState({currentVideoIndex: this.state.videos.indexOf(video)});
   }
 
   render() {
-    console.log('from app '+ JSON.stringify(this.state));
+
     return (
       <div>
         <nav className="navbar">
