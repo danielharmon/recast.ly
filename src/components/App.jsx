@@ -35,7 +35,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({videos: this.searchYouTube()});
+    this.props.searchYouTube({}, (data) => this.setState({videos: data}));
   }
 
   render() {
