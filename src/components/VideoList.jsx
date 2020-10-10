@@ -4,7 +4,7 @@ var VideoList = (videos) => {
   return (
     <div className="video-list">
       {videos.videos.map((video) => (
-        <VideoListEntry video={video} onClick={videos.onClick}/>
+        <VideoListEntry key={video.id.videoID} video={video} onClick={videos.onClick}/>
       ))}
 
     </div>

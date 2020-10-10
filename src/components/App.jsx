@@ -1,11 +1,10 @@
 import Search from './Search.js';
 import VideoPlayer from './VideoPlayer.js';
 import VideoList from './VideoList.js';
-import exampleVideoData from '../data/exampleVideoData.js';
-import searchYouTube from '../lib/searchYouTube.js';
+//import debounce from 'lodash/debounce';
 
 class App extends React.Component {
-  constructor(props = {searchYouTube: searchYouTube}) {
+  constructor(props) {
     super(props);
     this.state = {
       videos: [{
@@ -26,12 +25,16 @@ class App extends React.Component {
       currentVideoIndex: 0
     };
     this.onTitleClick = this.onTitleClick.bind(this);
-    this.searchYouTube = searchYouTube;
-
+    this.onSearch = this.onSearch.bind(this);
+    this.searchYouTube = _.debounce(this.props.searchYouTube, 500);
   }
 
   onTitleClick(video) {
     this.setState({currentVideoIndex: this.state.videos.indexOf(video)});
+  }
+
+  onSearch(event) {
+    this.searchYouTube({query: event.target.value}, (data) => this.setState({videos: data}));
   }
 
   componentDidMount() {
@@ -44,7 +47,7 @@ class App extends React.Component {
       <div>
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
-            <Search />
+            <Search onSearch={this.onSearch}/>
           </div>
         </nav>
         <div className="row">
